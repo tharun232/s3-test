@@ -30,7 +30,7 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
 # Configure the Terraform backend to store the state file in the S3 bucket
 terraform {
   backend "s3" {
-    bucket         = aws_s3_bucket.terraform_state_bucket.id
+    bucket         = aws_s3_bucket.terraform_state_bucket.bucket
     key            = "root" # Replace with your desired path
     region         = "ap-south-1"             # Replace with your desired region
   }
