@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 # Create an S3 bucket to store the Terraform state file
-resource "aws_s3_bucket" "terraform_state" {
+resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "my-terraform-state-bucket" # Replace with your desired bucket name
 
   # Prevent accidental deletion of the state bucket
@@ -30,7 +30,7 @@ resource "aws_s3_bucket" "terraform_state" {
 # Configure the Terraform backend to store the state file in the S3 bucket
 terraform {
   backend "s3" {
-    bucket         = aws_s3_bucket.terraform_state.id
+    bucket         = aws_s3_bucket.terraform_state_bucket.id
     key            = "root" # Replace with your desired path
     region         = "ap-south-1"             # Replace with your desired region
   }
