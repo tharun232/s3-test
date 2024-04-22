@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "my_bucket" {
+resource "aws_s3_bucket" "example" {
   bucket = var.bucket_name
   acl    = "private"
 
@@ -9,9 +9,17 @@ resource "aws_s3_bucket" "my_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "my_bucket_acl" {
-  bucket = aws_s3_bucket.my_bucket.bucket
-  
-  acl    = "private"  # Set the ACL to "private" or any other desired ACL
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.example.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  depends_on = [aws_s3_bucket_ownership_controls.example]
+
+  bucket = aws_s3_bucket.example.id
+  acl    = "private"
 }
 
