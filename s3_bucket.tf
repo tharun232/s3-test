@@ -5,6 +5,7 @@ resource "aws_s3_bucket" "example" {
 
   tags = {
     Name = "My Terraform Managed Bucket"
+    Name = "Test"
   }
 }
 
