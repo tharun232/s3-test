@@ -7,6 +7,7 @@ resource "aws_s3_bucket" "example" {
     Name = "My Terraform Managed Bucket"
     Name = "Test"
     Name = "Test1"
+    Env  = "Cloud"
 
   }
 }
