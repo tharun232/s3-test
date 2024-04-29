@@ -1,13 +1,11 @@
 variable "reg" {
   type        = string
   description = "Region"
-  type        = string
   default     = ""
 }
 variable "bkt" {
   type        = string
   description = "Bucket Name"
-  type        = string
   default     = ""
 
   validation {
