@@ -1,28 +1,19 @@
-resource "aws_s3_bucket" "example" {
-  bucket = var.bucket_name
+locals {
+  environment        = "preprod"
+  appname            = var.bkt
+  backup             = "no"
+  businessunit       = "infra"
+  dataclassification = "internal"
+  regN               = var.reg == "us-east-1" ? "nv" : "oh"
+}
 
-  force_destroy = true
-
+resource "aws_s3_bucket" "bktCreate" {
+  bucket = "${local.businessunit}-${local.environment}-${local.regN}-${local.appname}-storage"
   tags = {
-    Name = "My Terraform Managed Bucket"
-    Name = "Test"
-    Name = "Test1"
-    Env  = "Cloud"
-
+    Environment        = "${local.environment}"
+    AppName            = "${local.appname}"
+    Backup             = "${local.backup}"
+    BusinessUnit       = "${local.businessunit}"
+    DataClassification = "${local.dataclassification}"
   }
 }
-
-resource "aws_s3_bucket_ownership_controls" "example" {
-  bucket = aws_s3_bucket.example.id
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
-resource "aws_s3_bucket_acl" "example" {
-  depends_on = [aws_s3_bucket_ownership_controls.example]
-
-  bucket = aws_s3_bucket.example.id
-  acl    = "private"
-}
-
