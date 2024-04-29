@@ -4,11 +4,10 @@ locals {
   backup             = "no"
   businessunit       = "infra"
   dataclassification = "internal"
-  regN               = var.reg == "us-east-1" ? "nv" : "oh"
 }
 
 resource "aws_s3_bucket" "bktCreate" {
-  bucket = "${local.businessunit}-${local.environment}-${local.regN}-${local.appname}-storage"
+  bucket = var.bkt
   tags = {
     Environment        = "${local.environment}"
     AppName            = "${local.appname}"
