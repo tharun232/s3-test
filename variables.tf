@@ -1,10 +1,10 @@
-variable "reg" {
+variable "bucket_name" {
+  description = "The name of the S3 bucket"
   type        = string
-  description = "Region"
-  default     = ""
 }
-variable "bkt" {
+
+variable "aws_region" {
+  description = "The AWS region where the bucket is created"
   type        = string
-  description = "Bucket Name"
-  default     = ""
+  default     = "us-west-2"
 }
