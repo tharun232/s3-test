@@ -1,11 +1,3 @@
-locals {
-  environment        = "preprod"
-  appname            = var.bkt
-  backup             = "no"
-  businessunit       = "infra"
-  dataclassification = "internal"
-}
-
 resource "aws_s3_bucket" "bktCreate" {
   bucket = var.bkt
   tags = {
