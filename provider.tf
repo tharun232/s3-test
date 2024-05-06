@@ -1,3 +1,3 @@
 provider "aws" {
-  region = var.reg
+  region = var.aws_region
 }
